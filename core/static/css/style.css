@@ -1,0 +1,372 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+   
+    z-index: 10; 
+}
+
+
+.nav-link{
+    color: white;
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(17, 95, 163, 1);
+    border-width: 2px;
+}  
+
+.navbar .navbar-toggler-icon {
+    border: color rgba(17, 95, 163, 1);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(17, 95, 163, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.principal {
+    position: relative; 
+}
+
+.principal .imagem img {
+    position: absolute; 
+    left: 0;
+    width: 100%; 
+    height: 480px; 
+    z-index: -1;
+    
+}
+
+.pelicula{
+    position: absolute;
+    background-color: black; 
+    opacity: 0.7;
+    left: 0;
+    width: 100%; 
+    height: 480px; 
+    z-index: 1;
+    
+}
+
+.conteudo {
+    position: relative;
+    z-index: 2; 
+    color: white;
+    text-align: center; 
+}
+
+.conteudo h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    font-style: italic;
+    padding-top: 170px;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.conteudo .btn {
+    padding: 10px 20px;
+    background-color: transparent; 
+    border: 2px solid #771F74;
+    color: white;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.conteudo .btn:hover {
+    background-color: #771F74;
+    transform: scale(1.05);
+}
+
+
+.servicos h1{
+    color: white;
+    font-weight: 900;
+    padding-top: 250px;
+    font-style: italic;
+    margin-left: 30px;
+
+}
+    
+#carouselExampleCaptions {
+    max-width: 400px; 
+    margin: auto; 
+    border: 1px solid white; 
+    overflow: hidden; 
+    background-color: transparent;
+    margin-top: 40px;
+  }
+  
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 260px; 
+    text-align: center;
+    opacity: 0; 
+    
+  }
+  
+  .carousel-item.active {
+    opacity: 1; 
+  }
+  
+  .carousel-content {
+    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 38%;
+    font-size: 14px;
+  }
+  
+.nossamissao h1{
+    color: white;
+    font-weight: 900;
+    margin-top: -165px;
+    font-style: italic;
+    margin-left: 30px;
+
+} 
+  
+
+.imagem12{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 26px;
+    
+}
+
+.imagem12 img{
+    max-width:85%;
+    transition: transform 0.5s ease-in-out;
+    
+
+}
+
+.imagem12 img:hover{
+
+    transform: scale(1.05);
+}
+
+.sobrenos h1{
+    color: white;
+    font-weight: 900;
+    margin-top: -165px;
+    font-style: italic;
+    margin-left: 30px;
+}
+
+.textosobre p{
+    width: 90%;
+    font-size: 16px;
+    color: white;
+    margin-left: 30px;
+}
+
+
+.retangulopretoclaro{
+    background-color: #0D0D0D;
+    height: 1030px;
+    margin-top: 75px;
+    border-radius: 20px;
+    width: 90%;
+    margin: 75px auto 0 auto; 
+    display: block;
+
+
+    
+}
+
+
+.retangulopretoclaro h1{
+    padding-top: 50px;
+    width: 58%;
+    font-size: 35px;
+}
+
+
+        
+.container {
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    
+}
+
+label {
+    font-style: italic;
+    font-size: 18px;
+    display: block;
+    padding-top: 20px;
+    
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-style: italic;
+    border: none;
+    border-radius: 15px;
+    background-color: #d3d3d3;
+    outline: none;
+    caret-color: #771F74;
+    
+    
+}
+input::placeholder{
+    color: black;
+    opacity: 0.7;
+}
+
+
+ /* Estilizando o dropdown */
+ #lista-cidades {
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    color: black;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+}
+
+#lista-cidades div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#lista-cidades div:hover {
+    background: lightgray;
+}
+
+.autocomplete {
+    position: relative;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+
+   
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: #771F74; 
+    
+}
+
+
+
+
+.container .btn21{
+    padding: 10px 20px;
+    background-color: transparent; 
+    border: 2px solid #771F74;
+    color: white;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 20px;
+}
+
+
+.container .btn21:hover {
+    background-color: #771F74;
+    transform: scale(1.05);
+}
+
+footer{
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap:10px;
+    padding: 0;
+    margin-top: 30px;
+    
+    
+}
+
+footer h3{
+    color: #FFFFFF;
+    opacity: 0.7;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    
+}
+
+footer img{
+    width: 90px;
+    
+}
+
+footer h6{
+    color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+    width: 50%;
+
+
+}
+
+footer h6:hover{
+    color: #771F74;
+    transform: scale(1.05);
+
+}
+
+.redes{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+.redes img{
+    width: 12%;
+    height: 49px;
+    margin-left: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.redes img:hover{
+    
+    transform: scale(1.05);
+}
+
