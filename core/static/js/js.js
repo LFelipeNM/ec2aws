@@ -50,3 +50,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
     configurarAutocomplete();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeIns = document.querySelectorAll('.fade-in');
+
+    function handleScroll() {
+        fadeIns.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight - 50 && rect.bottom > 0;
+
+            if (isVisible) {
+                element.classList.add('appear');
+            } else {
+                element.classList.remove('appear'); 
+            }
+        });
+    }
+
+    
+    window.addEventListener('scroll', handleScroll);
+
+    
+    handleScroll();
+});
+
+window.onload = function() {
+    const bolhasContainer = document.querySelector('.bolhas');
+
+    for (let i = 0; i < 50; i++) {
+        let bolha = document.createElement('div');
+        bolha.classList.add('bolha');
+
+        const size = Math.random() * (60 - 30) + 30;
+        bolha.style.width = `${size}px`;
+        bolha.style.height = `${size}px`;
+
+        const randomLeft = Math.random() * 100;
+        bolha.style.left = `${randomLeft}vw`;
+
+        bolhasContainer.appendChild(bolha);
+
+        const randomDuration = Math.random() * (15 - 10) + 10;
+        const randomDelay = Math.random() * (5 - 0) + 0;
+        bolha.style.animationDuration = `${randomDuration}s`;
+        bolha.style.animationDelay = `${randomDelay}s`;
+
+        const randomHorizontalMovement = Math.random() * (10 - -10) + -10;
+        bolha.style.animation = `cair ${randomDuration}s linear infinite`;
+
+        const keyframes = `@keyframes cair {
+            0% {
+                transform: translateY(-10vh) translateX(${randomHorizontalMovement}vw);
+            }
+            100% {
+                transform: translateY(100vh) translateX(${randomHorizontalMovement}vw);
+            }
+        }`;
+
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+    }
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var openModal = document.getElementById("openModal");
+    var myModal = new bootstrap.Modal(document.getElementById("instaModal"));
+
+    openModal.addEventListener("click", function () {
+        myModal.show();
+    });
+});
