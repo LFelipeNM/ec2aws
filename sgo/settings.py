@@ -79,8 +79,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'webessence',
         'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'PASSWORD': 'Marciomarques08',
+        'HOST': 'database-1.ch68q02m4gu3.us-east-1.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
@@ -123,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = "/home/ubuntu/ec2aws/core/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
