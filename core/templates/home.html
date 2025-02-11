@@ -1,12 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WebEssence - Criação de sites profissionais e hospedagem com suporte especializado para empresas e empreendedores.">
-    <title>WebEssence - Site Oficial</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A WebEssence oferece criação de sites profissionais, hospedagem de qualidade e suporte especializado para empresas e empreendedores. Solicite seu orçamento gratuito e tenha um site que destaque seu negócio!">
+    <meta name="keywords" content="criação de sites, hospedagem de sites, desenvolvimento web, suporte especializado, sites profissionais, web design, empresas, empreendedores">
+    <meta name="author" content="WebEssence">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="WebEssence - Criação de Sites Profissionais e Hospedagem com Suporte Especializado">
+    <meta property="og:description" content="A WebEssence oferece criação de sites profissionais, hospedagem de qualidade e suporte especializado. Solicite seu orçamento e tenha um site que destaque seu negócio.">
+    <meta property="og:image" content="{% static 'img/logo-principal.png' %}">
+    <meta property="og:url" content="https://www.webessence.com.br">
+    <meta property="og:type" content="website">
+    
+    <title>WebEssence - Criação de Sites Profissionais e Hospedagem com Suporte Especializado</title>
+    
+    <!-- Scripts and Stylesheets -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -242,37 +255,68 @@
 </div>
 </div>
 </div>
-<div class="modal fade" id="instaModal" tabindex="-1" aria-labelledby="instaModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="instaModalLabel">Aviso</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body">
-              O Instagram está em manutenção e voltará em breve!
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
-          </div>
-      </div>
-  </div>
-</div>
 
 <footer class="fade-in">
   <img src="{% static 'img/logo-principal.png'%}">
   <h3>Todos Direitos Reservados 2025</h3>
-  <h6>Política de Privacidade</h6>
-  <h6>Nossos Serviços</h6>
-  <h6>Contatos</h6>
-  <h6>Fale Conosco</h6>
+  
+  <!-- Link para abrir o modal da Política de Privacidade -->
+  <h6 data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Política de Privacidade</h6>
+  
+  <a href="#servicos" style="text-decoration: none; color: white;">
+    <h6>Nossos Serviços</h6>
+  </a>
+  
+  <h6 onclick="window.location.href='https://www.instagram.com/webessence.com.br/tagged/'">Contatos</h6>
+  <h6 onclick="window.location.href='https://www.instagram.com/webessence.com.br/tagged/'">Fale Conosco</h6>
   
   <div class="redes">
-    <img src="{% static 'img/instagram.png' %}" class="teste12" id="openModal">
+    <img src="{% static 'img/instagram.png' %}" class="teste12" onclick="window.location.href='https://www.instagram.com/webessence.com.br/tagged/'">
     <img src="{% static 'img/linkedin.png' %}" onclick="window.location.href='https://www.linkedin.com/in/luis-felipe-marques-nascimento-0653a2291/'">
   </div>
 </footer>
 
+<!-- Modal da Política de Privacidade -->
+<div class="modal fade" id="privacyPolicyModal" tabindex="-1" aria-labelledby="privacyPolicyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="privacyPolicyModalLabel">Política de Privacidade</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <h6>1. Coleta de Dados</h6>
+        <p>Coletamos informações quando você visita nosso site, preenche formulários ou entra em contato conosco. Essas informações podem incluir seu nome, e-mail, telefone, endereço IP e dados de navegação.</p>
+        
+        <h6>2. Uso de Dados</h6>
+        <p>Utilizamos suas informações para melhorar sua experiência no site, personalizar nosso conteúdo, responder às suas perguntas e oferecer serviços de forma mais eficiente.</p>
+        
+        <h6>3. Compartilhamento de Dados</h6>
+        <p>Não compartilhamos suas informações pessoais com terceiros, exceto quando necessário para processar pagamentos, fornecer serviços ou quando exigido por lei.</p>
+        
+        <h6>4. Segurança</h6>
+        <p>Implementamos medidas de segurança para proteger seus dados pessoais. No entanto, nenhuma transmissão de dados pela internet é 100% segura, e não podemos garantir a segurança total.</p>
+        
+        <h6>5. Cookies</h6>
+        <p>Usamos cookies para melhorar sua experiência no site. Você pode desativar os cookies no seu navegador, mas isso pode afetar a funcionalidade do site.</p>
+        
+        <h6>6. Alterações na Política de Privacidade</h6>
+        <p>Reservamo-nos o direito de atualizar nossa política de privacidade periodicamente. Quaisquer mudanças serão postadas nesta página, e a data da última atualização será indicada abaixo.</p>
+        
+        <h6>Última atualização: Fevereiro de 2025</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/js.js' %}"></script>
 </body>
 </html>
