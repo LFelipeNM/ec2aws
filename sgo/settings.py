@@ -76,12 +76,8 @@ WSGI_APPLICATION = "sgo.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webessence',
-        'USER': 'root',
-        'PASSWORD': 'Marciomarques08',
-        'HOST': 'database-1.ch68q02m4gu3.us-east-1.rds.amazonaws.com',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -130,3 +126,11 @@ STATIC_ROOT = "/home/ubuntu/ec2aws/core/static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"  # Ou o SMTP do seu provedor de e-mail
+EMAIL_PORT = 587  # Porta padrão para TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "luisxmarques08@gmail.com"  # Substitua pelo seu e-mail
+EMAIL_HOST_PASSWORD = "aeva xtox cbfy vtey"  # Substitua pela senha ou use um App Password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

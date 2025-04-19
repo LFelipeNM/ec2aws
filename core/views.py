@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import FormDataForm
 from django.http import HttpResponse
 from .models import FormData
+from django.core.mail import send_mail
 
 
 def home(request):
@@ -20,9 +21,10 @@ def form_view(request):
         servicos_str = ",".join(servicos_ids)
 
         if FormData.objects.filter(email=email).exists() or FormData.objects.filter(telefone=telefone).exists():
-            return render(request, "home.html", {"message": "Email ou telefone já cadastrado. Tente novamente com outro email ou telefone."})
+            return render(request, "home.html", {
+                "message": "Email ou telefone já cadastrado. Tente novamente com outro email ou telefone."
+            })
 
-      
         form_data = FormData.objects.create(
             nome=nome,
             sobrenome=sobrenome,
@@ -32,9 +34,32 @@ def form_view(request):
             servicos=servicos_str
         )
 
-        return render(request, "home.html", {"message": "Obrigado pelo seu contato! Nossa equipe entrará em contato com você em breve para fornecer todo o suporte necessário."})
+       
+        assunto = "Novo contato recebido pelo formulário"
+        mensagem = (
+            f"Novo contato recebido:\n\n"
+            f"Nome: {nome} {sobrenome}\n"
+            f"E-mail: {email}\n"
+            f"Telefone: {telefone}\n"
+            f"Cidade: {cidade}\n"
+            f"Serviços selecionados: {servicos_str}\n"
+        )
+        destinatario = ["luisxmarques08@gmail.com"]  
+
+        send_mail(
+            assunto,
+            mensagem,
+            "luisxmarques08@gmail.com",  
+            destinatario,
+            fail_silently=False,
+        )
+
+        return render(request, "home.html", {
+            "message": "Obrigado pelo seu contato! Nossa equipe entrará em contato com você em breve para fornecer todo o suporte necessário."
+        })
 
     return render(request, "home.html")
+
 
 
 
