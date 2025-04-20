@@ -1,21 +1,13 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo "Instalando dependências do Python"
-      - python -m pip install --upgrade pip
-
   pre_build:
     commands:
-      - echo "Fazendo git pull para garantir o código mais recente"
+      - echo "Atualizando o código com git pull"
       - git pull origin main
-
   build:
     commands:
-      - echo "Instalando dependências do Django"
-      - pip install -r requirements.txt
-
-  post_build:
-    commands:
-      - echo "Build finalizado"
+      - echo "Reiniciando o Nginx"
+      - sudo systemctl restart nginx
+      - echo "Reiniciando o Gunicorn"
+      - sudo systemctl restart gunicorn
