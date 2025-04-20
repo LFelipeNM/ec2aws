@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+
+files:
+  - source: core/
+    destination: /home/ubuntu/ec2aws/core/
+
+hooks:
+  AfterInstall:
+    - location: scripts/restart.sh
+      timeout: 30
+      runas: ubuntu
