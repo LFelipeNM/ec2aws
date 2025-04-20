@@ -3,17 +3,19 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Install python dependencies"
+      - echo "Instalando dependências do Python"
       - python -m pip install --upgrade pip
-      - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+  pre_build:
+    commands:
+      - echo "Fazendo git pull para garantir o código mais recente"
+      - git pull origin main
 
   build:
     commands:
-      - echo "Git Pull"
-      - git pull origin main  # Certifique-se de substituir "main" pelo nome correto do seu branch
-      - echo "Restart server"
-      - sudo systemctl restart nginx  # Comando para reiniciar o Nginx, se for o seu servidor web
+      - echo "Instalando dependências do Django"
+      - pip install -r requirements.txt
 
   post_build:
     commands:
-      - echo "Post build steps"
+      - echo "Build finalizado"

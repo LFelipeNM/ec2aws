@@ -1,28 +1,21 @@
-version: 0.0
-os: linux
-files:
-  - source: /                    # Caminho de origem dos arquivos do repositório
-    destination: /home/ubuntu/ec2aws  # Destino no EC2 onde os arquivos serão copiados
-permissions:
-  - object: /home/ubuntu/ec2aws/*
-    owner: ubuntu
-    group: ubuntu
-    mode: 755
+version: 0.2
 
-hooks:
-  BeforeInstall:
-    - location: scripts/git_pull.sh
-      timeout: 300
+phases:
+  install:
+    commands:
+      - echo "Instalando dependências do Python"
+      - python -m pip install --upgrade pip
 
-  AfterInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 180
+  pre_build:
+    commands:
+      - echo "Fazendo git pull para garantir o código mais recente"
+      - git pull origin main
 
-  ApplicationStart:
-    - location: scripts/migrate.sh
-      timeout: 180
+  build:
+    commands:
+      - echo "Instalando dependências do Django"
+      - pip install -r requirements.txt
 
-  ValidateService:
-    - location: scripts/restart.sh
-      timeout: 60
-
+  post_build:
+    commands:
+      - echo "Build finalizado"
