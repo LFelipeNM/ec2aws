@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /           # Copia todos os arquivos da raiz do repositório, incluindo manage.py
+    destination: /home/ubuntu/ec2aws/
+  - source: /sgo/       # Copia o conteúdo do diretório sgo (configuração do Django)
+    destination: /home/ubuntu/ec2aws/sgo/
+  - source: /core/      # Copia o conteúdo do diretório core (templates, static, etc.)
+    destination: /home/ubuntu/ec2aws/core/
+
+hooks:
+  BeforeInstall:
+    - location: scripts/git_pull.sh
+      timeout: 180
+
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 180
+    - location: scripts/migrate.sh
+      timeout: 180
+
+  ApplicationStart:
+    - location: scripts/restart.sh
+      timeout: 180
+
