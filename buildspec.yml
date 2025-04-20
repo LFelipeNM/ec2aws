@@ -2,28 +2,36 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.x
     commands:
-      - echo "Install python dependencies"
-      - python -m pip install --upgrade pip
-      - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - echo "Install dependencies"
-      - ./install_dependencies.sh  # Adicionando script de instalação
+      # Instala dependências do sistema, se necessário
+      echo "Instalando dependências do sistema"
+      sudo apt-get update -y
+      sudo apt-get install -y git
 
   pre_build:
     commands:
-      - echo "Updating codebase"
-      - git pull origin main || exit 1  # Atualizando o código com git pull
-      - source venv/bin/activate  # Ativando ambiente virtual, se necessário
+      # Se você precisar de um 'git pull' para atualizar o repositório antes de compilar, adicione aqui
+      echo "Realizando git pull"
+      cd /path/to/your/project/directory
+      git pull origin main
 
   build:
     commands:
-      - echo "Running migrations"
-      - python manage.py migrate  # Rodando migrações do Django
+      echo "Instalando dependências do Python"
+      python -m pip install --upgrade pip
+      if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      # Comandos adicionais de construção do projeto, se necessário
+      echo "Construindo a aplicação Django"
 
   post_build:
     commands:
-      - echo "Restarting Gunicorn and Nginx"
-      - sudo /bin/systemctl restart gunicorn  # Reiniciando o Gunicorn
-      - sudo /bin/systemctl restart nginx  # Reiniciando o Nginx
+      echo "Reiniciando o servidor"
+      # Exemplo: reiniciar o servidor
+      sudo systemctl restart nginx
+      # Ou qualquer outro comando para reiniciar seu servidor
+      sudo systemctl restart gunicorn
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
