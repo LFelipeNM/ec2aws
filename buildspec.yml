@@ -1,26 +1,29 @@
-version: 0.0
-os: linux
+version: 0.2
 
-files:
-  - source: /           # Copia todos os arquivos da raiz do repositório, incluindo manage.py
-    destination: /home/ubuntu/ec2aws/
-  - source: /sgo/       # Copia o conteúdo do diretório sgo (configuração do Django)
-    destination: /home/ubuntu/ec2aws/sgo/
-  - source: /core/      # Copia o conteúdo do diretório core (templates, static, etc.)
-    destination: /home/ubuntu/ec2aws/core/
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+    commands:
+      - echo "Install python dependencies"
+      - python -m pip install --upgrade pip
+      - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - echo "Install dependencies"
+      - ./install_dependencies.sh  # Adicionando script de instalação
 
-hooks:
-  BeforeInstall:
-    - location: scripts/git_pull.sh
-      timeout: 180
+  pre_build:
+    commands:
+      - echo "Updating codebase"
+      - git pull origin main || exit 1  # Atualizando o código com git pull
+      - source venv/bin/activate  # Ativando ambiente virtual, se necessário
 
-  AfterInstall:
-    - location: scripts/install_dependencies.sh
-      timeout: 180
-    - location: scripts/migrate.sh
-      timeout: 180
+  build:
+    commands:
+      - echo "Running migrations"
+      - python manage.py migrate  # Rodando migrações do Django
 
-  ApplicationStart:
-    - location: scripts/restart.sh
-      timeout: 180
-
+  post_build:
+    commands:
+      - echo "Restarting Gunicorn and Nginx"
+      - sudo /bin/systemctl restart gunicorn  # Reiniciando o Gunicorn
+      - sudo /bin/systemctl restart nginx  # Reiniciando o Nginx
