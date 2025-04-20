@@ -1,12 +1,18 @@
 version: 0.0
 os: linux
-
 files:
-  - source: core/
-    destination: /home/ubuntu/ec2aws/core/
-
+  - source: /
+    destination: /home/ubuntu/ec2aws
 hooks:
   AfterInstall:
-    - location: scripts/restart.sh
-      timeout: 30
+    - location: scripts/install_dependencies.sh
+      timeout: 300
       runas: ubuntu
+  ApplicationStart:
+    - location: scripts/migrate.sh
+      timeout: 300
+      runas: ubuntu
+    - location: scripts/restart.sh
+      timeout: 300
+      runas: ubuntu
+
