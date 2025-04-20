@@ -1,6 +1,4 @@
 #!/bin/bash
-# Reiniciar o Gunicorn
-sudo systemctl restart gunicorn
+sudo /bin/systemctl restart gunicorn
+sudo /bin/systemctl restart nginx
 
-# Reiniciar o Nginx
-sudo systemctl restart nginx
